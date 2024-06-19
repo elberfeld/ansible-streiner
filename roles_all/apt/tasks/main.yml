@@ -1,0 +1,46 @@
+---
+
+- name: install apt-transport-https packages before adding sources
+  apt:
+    name: "{{ packages }}"
+    update_cache: no
+    state: present
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+
+- name: add debian repo keys (id)
+  apt_key:
+    id: "{{ item }}"
+    state: present
+  with_items: "{{ debian_keys_id }}"
+  when: debian_keys_id
+
+- name: add debian repo keys (url)
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items: "{{ debian_keys_url }}"
+  when: debian_keys_url
+
+- name: set debian repos
+  template: src=sources.list.j2 dest=/etc/apt/sources.list
+
+- name: install common packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+    state: present
+  vars:
+    packages:
+      - psmisc
+      - htop
+      - tree
+      - tmux
+      - vim
+      - wget
+

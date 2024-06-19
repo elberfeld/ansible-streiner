@@ -1,0 +1,15 @@
+---
+
+- name: add sshkeys for server
+  authorized_key:
+    user: root
+    key: "{{ lookup('file', 'keyfiles/' + item + '.pub') }}"
+  with_items: "{{ admins }}"
+  when: admins
+  notify: restart sshd
+
+    
+- name: deploy sshd config  
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config 
+  notify: restart sshd 
+  

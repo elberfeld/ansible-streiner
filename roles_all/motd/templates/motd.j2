@@ -1,0 +1,5 @@
+
+ Server:  {{ ansible_hostname }}
+ {% for line in motd_lines %}
+ {{ line }}
+ {% endfor %}
