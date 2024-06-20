@@ -1,0 +1,47 @@
+---
+
+- name: Add hosts file entry 1
+  lineinfile:
+    path: /etc/hosts
+    state: present
+    regexp: '^(.*)127.0.1.1(.*)$'
+    line: "#removed: 127.0.1.1"
+
+- name: Add hosts file entry 2
+  lineinfile:
+    path: /etc/hosts
+    state: present
+    regexp: '^(.*){{ inventory_hostname }}(.*)$'
+    line: "{{ int_ip4 }} {{ inventory_hostname }} pvelocalhost"
+
+- name: Remove PVE Enterprise Repos 
+  file:
+    path: /etc/apt/sources.list.d/pve-enterprise.list
+    state: absent
+
+- name: Install Proxmox Packages
+  apt: 
+    state: present
+    name:
+      - proxmox-ve 
+      - nginx-light
+      - ifupdown2
+
+- name: Remove conflicting Packages 
+  apt: 
+    state: absent
+    name:
+      - os-prober 
+      - resolvconf 
+      - rdnssd
+
+- name: Remove PVE Enterprise Repos 
+  file:
+    path: /etc/apt/sources.list.d/pve-enterprise.list
+    state: absent
+ 
+- name: Nginx Config 
+  template:
+    src: "nginx"
+    dest: "/etc/nginx/sites-enabled/default"
+  notify: restart nginx
