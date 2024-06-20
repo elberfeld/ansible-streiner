@@ -5,6 +5,6 @@ services:
 
     image: esphome/esphome:stable
     ports:
-      - {{ esphome_port }}:1883 
+      - {{ esphome_port }}:6052 
     volumes:
       - "{{ basedir }}/config/:/config"
