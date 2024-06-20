@@ -1,0 +1,26 @@
+
+
+- include_tasks: ../functions/get_secret.yml
+  with_items:
+    - { path: "{{ basedir }}/grafana_admin_pass", length: 12 }
+
+- name: create folder struct for grafana
+  file: 
+    path: "{{ item }}"
+    state: "directory"
+  with_items:
+    - "{{ basedir }}"
+    - "{{ basedir }}/data/"   
+
+- name: create config filess
+  template: 
+    src: "{{ item }}" 
+    dest: "{{ basedir }}/{{ item }}"
+  with_items:
+    - docker-compose.yml
+    - grafana.ini
+
+- name: start grafana docker
+  community.docker.docker_compose_v2:
+    project_src: "{{ basedir }}"
+    state: present
