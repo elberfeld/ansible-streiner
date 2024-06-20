@@ -1,0 +1,36 @@
+
+
+motd_lines: 
+  - "Interner Server"
+  - "Interne IP: {{ int_ip4 }}"
+
+
+debian_sources: 
+  - "deb http://ftp2.de.debian.org/debian/ bookworm main contrib non-free non-free-firmware"
+  - "deb http://ftp.debian.org/debian bookworm-updates main contrib non-free non-free-firmware"
+  - "deb http://security.debian.org/ bookworm-security main contrib non-free non-free-firmware"
+  - "deb https://download.docker.com/linux/debian bookworm stable"
+
+debian_keys_id:
+
+debian_keys_url:
+  - "https://download.docker.com/linux/debian/gpg"
+
+
+# Primäre IP Adressen des Hosts 
+int_ip4: "{{ networks.local.fixed_ip.intserver }}"
+
+
+# Root - SSH Keys 
+admins:
+  - chris
+
+
+# Docker konfigurationen 
+docker:
+  # Interne Docker-Netzwerke 
+  internal_networks: {}
+  # Prometheus Metriken aktivieren 
+  prometheus_metrics: yes
+  # Prometheus Stats aktivieren
+  prometheus_stats: yes

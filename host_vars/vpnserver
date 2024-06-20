@@ -1,0 +1,38 @@
+
+motd_lines: 
+  - "VPN Server"
+  - "Interne IP: {{ int_ip4 }}"
+  - "Öffentliche IPs: {{ ext_ip4 }} / {{ ext_ip6 }}"
+
+debian_sources: 
+  - "deb http://ftp2.de.debian.org/debian/ bookworm main contrib non-free non-free-firmware"
+  - "deb http://ftp.debian.org/debian bookworm-updates main contrib non-free non-free-firmware"
+  - "deb http://security.debian.org/ bookworm-security main contrib non-free non-free-firmware"
+  - "deb https://download.docker.com/linux/debian bookworm stable"
+
+debian_keys_id:
+
+debian_keys_url:
+  - "https://download.docker.com/linux/debian/gpg"
+
+
+# Primäre IP Adressen des Hosts 
+ext_ip4: {{ networks.vpnserver.ext_ip4 }}
+ext_ip6: {{ networks.vpnserver.ext_ip6 }}
+int_ip4: {{ networks.vpnserver.int_ip4 }}
+
+
+# Root - SSH Keys 
+admins:
+  - chris
+
+
+# Docker konfigurationen 
+docker:
+  # Interne Docker-Netzwerke 
+  internal_networks: {}
+  # Prometheus Metriken aktivieren 
+  prometheus_metrics: yes
+  # Prometheus Stats aktivieren
+  prometheus_stats: yes
+

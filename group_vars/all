@@ -1,0 +1,37 @@
+
+# Global ansible settings
+ansible_python_interpreter: /usr/bin/python3
+
+
+# Konfiguration der lokalen Netzwerke
+networks:
+  defaultroute:
+    cdir_v4: 0.0.0.0/0
+    cdir_v6: ::/0
+
+  # Lokales internes Netzwerk
+  local: 
+    cdir_v4: 192.168.0.0/24
+    dns:
+      domain: streiner.lan
+      server: 192.168.0.1 # cannot reference fixed_ip here
+    fixed_ip:
+      router: 192.168.0.1
+      controller: 192.168.0.2
+      homematic_ccu3: 192.168.0.999 # TBD
+      intserver: 192.168.0.100
+      master: 192.168.0.101
+
+  # VPN Server Netzwerk
+  vpnserverwg:
+    dns:
+      domain: streiner.lan # cannot reference variable here
+      server: 192.168.0.1 # cannot reference fixed_ip here
+    cdir_v4: 10.70.0.0/24      
+
+  # Webserver local Networks
+  vpnserver:
+    cdir_v4: 10.100.1.1/32
+    int_ip4: 10.100.1.1
+    ext_ip4: x.y.z.a
+    ext_ip6: ABC::1

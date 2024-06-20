@@ -1,0 +1,36 @@
+
+motd_lines: 
+  - "Interner Proxmox"
+  - "Interne IP: {{ int_ip4 }}"
+
+  
+debian_sources: 
+  - "deb http://deb.debian.org/debian/ bookworm main non-free contrib"
+  - "deb http://security.debian.org/debian-security bookworm-security main contrib non-free"
+  - "deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free"
+  - "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription"
+
+debian_keys_id:
+
+debian_keys_url:
+  - "https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg"
+
+
+# Primäre IP Adressen des Hosts 
+int_ip4: "{{ networks.local.fixed_ip.master }}"
+
+
+# Root - SSH Keys 
+admins:
+  - chris
+
+
+# Docker konfigurationen 
+docker:
+  # Interne Docker-Netzwerke 
+  internal_networks: {}
+  # Prometheus Metriken aktivieren 
+  prometheus_metrics: yes
+  # Prometheus Stats aktivieren
+  prometheus_stats: yes
+
