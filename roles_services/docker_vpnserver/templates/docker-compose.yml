@@ -41,4 +41,12 @@ services:
 
 networks:
   web:
-    external: true
+    external: true    
+  default:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        # must be a ULA range
+        - subnet: fd00:dead:beef:{{ vpn_port }}::/64
