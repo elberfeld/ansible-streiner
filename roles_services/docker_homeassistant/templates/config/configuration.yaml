@@ -20,7 +20,7 @@ homeassistant:
   currency: EUR 
   country: DE
   time_zone: Europe/Berlin
-  internal_url: http://{{ ip_v4 }}:{{ homassistant_port }}
+  internal_url: http://{{ int_ip4 }}:{{ homassistant_port }}
   auth_providers:
     - type: trusted_networks
       trusted_networks:
