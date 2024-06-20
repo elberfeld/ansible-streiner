@@ -1,0 +1,24 @@
+---
+
+- name: "create folder struct for {{ servicename }}"
+  file: 
+    path: "{{ item }}"
+    state: "directory"
+  with_items:
+    - "{{ basedir }}"
+    - "{{ basedir }}/config/"
+    - "{{ basedir }}/data/"
+    - "{{ basedir }}/log/"
+
+- name: "create config files for {{ servicename }}"
+  template: 
+    src: "{{ item }}" 
+    dest: "{{ basedir }}"
+  with_items: 
+    - mosquitto.conf
+    - docker-compose.yml
+
+- name: "start {{ servicename }} docker"
+  community.docker.docker_compose_v2:
+    project_src: "{{ basedir }}"
+    state: present
