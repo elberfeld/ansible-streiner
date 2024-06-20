@@ -5,12 +5,12 @@ datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
-    url: http://{{ {{ networks.local.fixed_ip.intserver }} }}:9090
+    url: http://{{ networks.local.fixed_ip.intserver }}:9090
 
   - name: Homeassistant_Flux
     type: influxdb
     access: proxy
-    url: http://{{ {{ networks.local.fixed_ip.intserver }} }}:18086
+    url: http://{{ networks.local.fixed_ip.intserver }}:18086
     jsonData:
       version: Flux
       organization: mqtt
@@ -22,7 +22,7 @@ datasources:
   - name: Homeassistant_InfluxQL
     type: influxdb
     access: proxy
-    url: http://{{ {{ networks.local.fixed_ip.intserver }} }}:18086
+    url: http://{{ networks.local.fixed_ip.intserver }}:18086
     # This database should be mapped to a bucket
     database: mqtt
     jsonData:
