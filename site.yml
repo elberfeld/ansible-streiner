@@ -1,0 +1,105 @@
+---
+
+- hosts: all 
+  remote_user: root
+  roles:
+    - { role: roles_all/cronapt, tags: cronapt }
+    - { role: roles_all/hostname, tags: hostname }
+    - { role: roles_all/motd, tags: motd }
+    - { role: roles_all/apt, tags: apt }
+    - { role: roles_all/packages, tags: packages }
+    - { role: roles_all/prometheus-node, tags: prometheus-node }
+    - { role: roles_all/sshd, tags: sshd }
+    - { role: roles_all/sysctl, tags: sysctl }
+
+
+- hosts: master 
+  remote_user: root
+  roles:
+    - { role: roles_services/proxmox, tags: proxmox }
+
+
+- hosts: intserver
+  remote_user: root
+  roles:
+    - { role: roles_services/docker, tags: docker }
+    - { 
+        role: roles_services/docker_esphome, tags: esphome,
+        servicename: esphome, 
+        basedir: /srv/esphome,
+        esphome_port: 6052
+      }
+    - { 
+        role: roles_services/docker_grafana, tags: grafana, 
+        servicename: grafana, 
+        basedir: /srv/grafana,
+        grafana_port: 3000 
+      }
+    - {
+        role: roles_services/docker_homeassistant, tags: homeassistant,
+        servicename: homeassistant, 
+        basedir: /srv/homeassistant,
+        homassistant_port: 8123,
+        homematic_callback_port: 12001,
+        influxdb_port: 18086
+      }
+    - { 
+        role: roles_services/docker_homer, tags: homer, 
+        servicename: homer, 
+        basedir: /srv/homer,
+        homer_port: 80
+      }
+    - { 
+        role: roles_services/docker_mqtt, tags: mqtt,
+        servicename: mqtt,
+        basedir: /srv/mqtt,
+        mqtt_port: 1883
+      }
+    - { 
+        role: roles_services/docker_pihole, 
+        tags: pihole,
+        servicename: pihole,
+        basedir: /srv/pihole,
+        web_port: 8080
+      }
+    - {
+        role: roles_services/docker_prometheus, tags: prometheus,
+        servicename: prometheus, 
+        basedir: /srv/prometheus,
+        prometheus_port: 9090,
+        influxdb_port: 28086
+      }
+    - { 
+        role: roles_services/docker_watchtower, tags: watchtower,
+        servicename: watchtower,
+        basedir: /srv/watchtower,
+      }   
+
+
+- hosts: vpnserver
+  remote_user: root
+  roles:
+    - { role: roles_services/docker, tags: docker }
+    - { 
+        role: roles_services/docker_traefik, tags: traefik,
+        servicename: traefik, 
+        basedir: /srv/traefik,
+        domain_base: "TBD",
+        domain_default: "TBD",
+        traefik_port: 8080
+      }
+    - {
+        role: roles_services/docker_vpnserver, tags: vpnserver, 
+        servicename: vpnserver, 
+        basedir: /srv/vpnserver, 
+        domain: TBD,
+        vpn_port: 51820
+      }
+    - { 
+        role: roles_services/docker_watchtower, tags: watchtower,
+        servicename: watchtower,
+        basedir: /srv/watchtower,
+      }   
+
+
+
