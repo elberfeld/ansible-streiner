@@ -3,6 +3,16 @@
 - include_tasks: ../functions/get_secret.yml
   with_items:
     - { path: "{{ basedir }}/grafana_admin_pass", length: 12 }
+    - { path: "/srv/homeassistant/influxdb_token", length: -1 } 
+
+- name: get homeassistant influxdb token 1
+  slurp: 
+    src: /srv/homeassistant/influxdb_token
+  register: homeassistant_influxdb_token_slurp
+
+- name: get homeassistant influxdb token 2
+  set_fact: 
+    "homeassistant_influxdb_token": "{{ homeassistant_influxdb_token_slurp.content | b64decode | regex_replace('\\s', '') }}" 
 
 - name: create folder struct for grafana
   file: 
@@ -11,6 +21,8 @@
   with_items:
     - "{{ basedir }}"
     - "{{ basedir }}/data/"   
+    - "{{ basedir }}/provisioning/"
+    - "{{ basedir }}/provisioning/datasources/"
 
 - name: create config filess
   template: 
@@ -19,6 +31,7 @@
   with_items:
     - docker-compose.yml
     - grafana.ini
+    - provisioning/dashboards/datasources.yml
 
 - name: start grafana docker
   community.docker.docker_compose_v2:
