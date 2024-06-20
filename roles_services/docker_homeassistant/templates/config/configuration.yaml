@@ -25,6 +25,8 @@ homeassistant:
     - type: trusted_networks
       trusted_networks:
         - {{ networks.local.cdir_v4 }}
+        # Teamp: Netzwerk chris für Konfiguration
+        - 10.0.0.0/8 
       allow_bypass_login: true
     - type: homeassistant
 
@@ -33,6 +35,9 @@ http:
   server_port: 8123
   ip_ban_enabled: False
   login_attempts_threshold: 10
+
+# https://www.home-assistant.io/integrations/api/
+api:
 
 # https://www.home-assistant.io/integrations/logger
 # log_level= critical, fatal, error, warning, warn, info, debug, notset
