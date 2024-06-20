@@ -15,7 +15,6 @@ remote_read:
 scrape_configs:
 
 {% for host in groups['all'] %}
-{% if hostvars[host].alert is defined and hostvars[host].alert %}
 
   - job_name: {{ host }}-metrics
     static_configs:
@@ -23,7 +22,8 @@ scrape_configs:
         labels:
           server: {{ host }}
 
-  {% if hostvars[host].alert.containers is defined %}
+  {% if hostvars[host].docker.prometheus_metrics is defined %}
+  {% if hostvars[host].docker.prometheus_metrics %}
 
   - job_name: {{ host }}-docker
     static_configs:
@@ -32,11 +32,8 @@ scrape_configs:
           server: {{ host }}
 
   {% endif %}
+  {% endif %}
 
-{% endif %}
-{% endfor %}
-
-{% for host in monitoring.external_dns_servers %}
 {% endfor %}
 
   # - job_name: 'snmp-omada'
