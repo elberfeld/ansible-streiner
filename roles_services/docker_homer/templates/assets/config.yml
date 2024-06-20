@@ -74,99 +74,94 @@ colors:
     background-image: "assets/your/dark/bg.png"
 
 
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links:
+
+  - name: "Github Configuration"
+    icon: "fab fa-github"
+    url: "https://github.com/elberfeld/ansible-streiner"
+    target: "_blank" 
+
+  - name: "Homer Configuration"
+    icon: "fab fa-github"
+    url: "https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md"
+    target: "_blank" 
+
+
 # Services
 # First level array represents a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
 
   - name: "SmartHome"
-    icon: "fas fa-code-branch"
+    icon: "fas fa-heartbeat"
     items:
+
       - name: "Homeassistant"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:8123/static/icons/favicon-192x192.png"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:8123"
-        type: "HomeAssistant"
         target: "_blank" 
+
       - name: "ESPHome"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:6052/static/images/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:6052"
         target: "_blank" 
+
       - name: "CCU3"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.homematic_ccu3 }}/ise/img/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.homematic_ccu3 }}"
         target: "_blank" 
 
   - name: "Infrastruktur"
-    icon: "fas fa-heartbeat"
+    icon: "fas fa-code-branch"
     items:
+
       - name: "Omada"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "https://{{ networks.local.fixed_ip.controller }}/favicon.ico"        
         url: "https://{{ networks.local.fixed_ip.controller }}"
-        type: "Ping"
         target: "_blank" 
+
       - name: "Proxmox"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
-        url: "http://{{ networks.local.fixed_ip.master }}:8006"
-        type: "Proxmox"
+        logo: "https://{{ networks.local.fixed_ip.master }}:8006/pve2/images/logo-128.png"        
+        url: "https://{{ networks.local.fixed_ip.master }}:8006"
         target: "_blank" 
+
       - name: "Pi-hole"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:8080/admin/img/logo.svg"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:8080"
-        type: "PiHole" 
         target: "_blank" 
+
       - name: "Grafana"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:3000/public/img/grafana_icon.svg"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:3000"
-        type: "Ping"
         target: "_blank" 
+
       - name: "Prometheus"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:9090/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:9090"
-        type: "Ping"
         target: "_blank" 
+
       - name: "VPN Server"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "https://{{ networks.vpnserver.ext_ip4 }}/favicon.ico"        
         url: "https://{{ networks.vpnserver.ext_ip4 }}"
-        type: "Ping"
         target: "_blank" 
 
   - name: "Other"
     icon: "fas fa-code-branch"
     items:
-      - name: "Github Configuration"
-        icon: "fab fa-github"
-        url: "https://github.com/elberfeld/ansible-streiner"
-        target: "_blank" 
-      - name: "Homer Configuration"
-        icon: "fab fa-github"
-        url: "https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md"
-        target: "_blank" 
+
       - name: "Influxdb (Homeassistant)"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:18086/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:18086"
-        type: "Ping"
         target: "_blank" 
+
       - name: "Influxdb (Prometheus)"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:28086/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:28086"
-        type: "Ping"
         target: "_blank" 
+
       - name: "Traefik Dashboard (vpnserver)"
-        logo: "assets/tools/sample.png"        
-        tag: "other"
-        url: "https://{{ networks.vpnserver.ext_ip4 }}:8080"
-        type: "Ping"
+        logo: "http://{{ networks.vpnserver.ext_ip4 }}:8080/favicon.ico"        
+        url: "http://{{ networks.vpnserver.ext_ip4 }}:8080"
         target: "_blank" 
-
-
