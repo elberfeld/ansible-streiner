@@ -1,0 +1,11 @@
+
+
+services:
+
+  app:
+
+    image: esphome/esphome:stable
+    ports:
+      - {{ esphome_port }}:1883 
+    volumes:
+      - "{{ basedir }}/config/:/config"

@@ -1,0 +1,37 @@
+---
+
+- name: "create folder struct for {{ servicename }}"
+  file: 
+    path: "{{ item }}"
+    state: "directory"
+  with_items:
+    - "{{ basedir }}/"
+    - "{{ basedir }}/config/"
+
+- name: "create config files for {{ servicename }}"
+  template: 
+    src: "{{ item }}" 
+    dest: "{{ basedir }}/{{ item }}"
+  with_items: 
+    - docker-compose.yml
+    - compile.sh
+  register: config
+
+- name: download config includes files 
+  get_url:
+    url: "https://raw.githubusercontent.com/esphome/esphome-docs/current/_static/{{ item }}" 
+    dest: "{{ basedir }}/config/{{ item }}"
+  with_items:
+    - webserver-v1.min.css
+    - webserver-v1.min.js
+
+- name: "stop {{ servicename }} docker"
+  community.docker.docker_compose_v2:
+    project_src: "{{ basedir }}"
+    state: absent
+  when: config.changed
+
+- name: "start {{ servicename }} docker"
+  community.docker.docker_compose_v2:
+    project_src: "{{ basedir }}"
+    state: present
