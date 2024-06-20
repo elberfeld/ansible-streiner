@@ -31,7 +31,7 @@
   with_items:
     - docker-compose.yml
     - grafana.ini
-    - provisioning/dashboards/datasources.yml
+    - provisioning/datasources/datasources.yml
 
 - name: start grafana docker
   community.docker.docker_compose_v2:
