@@ -7,7 +7,7 @@ services:
         ports:
             - "80:80"
             - "443:443"
-            - "{{ int_ip4 }}:8080:8080"
+            - "{{ int_ip4 }}:{{ traefik_port }}:8080"
         volumes:
             - "{{ basedir }}/traefik.yml:/etc/traefik/traefik.yml:ro"
             - "{{ basedir }}/dynamic:/etc/traefik/dynamic:ro"
