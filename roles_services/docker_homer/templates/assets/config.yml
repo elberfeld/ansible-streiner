@@ -103,6 +103,11 @@ services:
         url: "http://{{ networks.local.fixed_ip.intserver }}:8123"
         target: "_blank" 
 
+      - name: "MQTT Explorer"
+        logo: "https://mqtt.org/favicon-32x32.png"        
+        url: "http://{{ networks.local.fixed_ip.intserver }}:4000"
+        target: "_blank" 
+
       - name: "ESPHome"
         logo: "http://{{ networks.local.fixed_ip.intserver }}:6052/static/images/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:6052"
