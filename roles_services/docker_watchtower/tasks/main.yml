@@ -14,15 +14,20 @@
     - "{{ basedir }}"
 
 
-- name: Konfig-Dateien erstellen (base,graphite)
+- name: Konfig-Dateien erstellen 
   template:
     src: "{{ item }}"
     dest: "{{ basedir }}/{{ item }}"
   with_items:
     - docker-compose.yml
-  register: dockerconfig
+  register: config_files
 
-  
+- name: "stop {{ servicename }} docker"
+  community.docker.docker_compose_v2:
+    project_src: "{{ basedir }}"
+    state: absent
+  when: config_files.changed 
+
 - name: "start {{ servicename }} docker"
   community.docker.docker_compose_v2:
     project_src: "{{ basedir }}"
