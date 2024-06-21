@@ -2,6 +2,7 @@
 
 - include_tasks: ../functions/get_secret.yml
   with_items:
+    - { path: "{{ basedir }}/grafana_secret_key", length: 32 }
     - { path: "{{ basedir }}/grafana_admin_pass", length: 12 }
     - { path: "/srv/homeassistant/influxdb_token", length: -1 } 
 
@@ -14,17 +15,25 @@
   set_fact: 
     "homeassistant_influxdb_token": "{{ homeassistant_influxdb_token_slurp.content | b64decode | regex_replace('\\s', '') }}" 
 
-- name: create folder struct for grafana
+- name: "create folder struct for {{ servicename }} 1"
   file: 
     path: "{{ item }}"
     state: "directory"
   with_items:
     - "{{ basedir }}"
+
+- name: "create folder struct for {{ servicename }} 2"
+  file:
+    path: "{{ item }}"
+    state: "directory"
+    owner: 472
+    group: 0
+  with_items:
     - "{{ basedir }}/data/"   
     - "{{ basedir }}/provisioning/"
     - "{{ basedir }}/provisioning/datasources/"
 
-- name: create config filess
+- name: "create config files for {{ servicename }}"
   template: 
     src: "{{ item }}" 
     dest: "{{ basedir }}/{{ item }}"
@@ -32,8 +41,16 @@
     - docker-compose.yml
     - grafana.ini
     - provisioning/datasources/datasources.yml
+  register: config_files
 
-- name: start grafana docker
+- name: "stop {{ servicename }} docker"
+  community.docker.docker_compose_v2:
+    project_src: "{{ basedir }}"
+    state: absent
+  when: config_files.changed 
+
+
+- name: "start {{ servicename }} docker"
   community.docker.docker_compose_v2:
     project_src: "{{ basedir }}"
     state: present
