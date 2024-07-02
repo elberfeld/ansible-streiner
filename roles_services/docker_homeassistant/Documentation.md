@@ -24,6 +24,7 @@ Nach Installation automatisch vorhanden
 
 * Integration: Sonne 
 * Umbenennen in: Sun
+* Alle Entitäten aktivieren 
 
 ## Wetter 
 
@@ -42,7 +43,14 @@ Nach Installation automatisch vorhanden
 * Passswort: Leer 
 * Umbenennen in: MQTTBroker
 
-## Homematic 
+## ZHA / SLZB-06 
+
+Der SLZB-06 ist über Netzwerk angeschlossen.
+
+* Radio Type: ZNP
+* socket://192.168.0.18:6638
+
+## Homematic CCU3
 
 * In HACS (s. oben) muss zuerst das folgende Repository hinzugefügt werden: 
   * https://github.com/danielperna84/custom_homematic
@@ -68,7 +76,7 @@ Nach Installation automatisch vorhanden
   * Aktive Systembanachrichtigungen: Ja
 
 * Seite 2:
-  * Aktiviere Homematic IP: Nein
+  * Aktiviere Homematic IP: Ja
   * HmIP-RF Port: 2010
   * Aktiviere Homematic (Bidcos-RF): Ja
   * HM-RF Port: 2001
