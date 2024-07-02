@@ -167,6 +167,6 @@ services:
         target: "_blank" 
 
       - name: "Traefik Dashboard (vpnserver)"
-        logo: "http://{{ networks.webserver.int_ip4 }}:8080/favicon-32x32.png"        
+        logo: "http://{{ networks.webserver.int_ip4 }}:8080/dashboard/icons/favicon-32x32.png"        
         url: "http://{{ networks.webserver.int_ip4 }}:8080"
         target: "_blank" 
