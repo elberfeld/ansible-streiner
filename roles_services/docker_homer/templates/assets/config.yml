@@ -148,7 +148,7 @@ services:
         target: "_blank" 
 
       - name: "VPN Server"
-        logo: "https://streiner.elberfeld.info/favicon.ico"        
+        logo: "https://streiner.elberfeld.info/logo-192.png"        
         url: "https://streiner.elberfeld.info"
         target: "_blank" 
 
@@ -167,6 +167,6 @@ services:
         target: "_blank" 
 
       - name: "Traefik Dashboard (vpnserver)"
-        logo: "http://{{ networks.webserver.int_ip4 }}:8080/favicon.ico"        
+        logo: "http://{{ networks.webserver.int_ip4 }}:8080/favicon-32x32.png"        
         url: "http://{{ networks.webserver.int_ip4 }}:8080"
         target: "_blank" 
