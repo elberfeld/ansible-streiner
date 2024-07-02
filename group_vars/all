@@ -18,8 +18,9 @@ networks:
     fixed_ip:
       router: 192.168.0.1
       controller: 192.168.0.2
-      homematic_ccu3: 192.168.0.999 # TBD
-      slzb-06: 192.168.0.999 # TBD
+      growatt_shinex: 192.168.0.6
+      homematic_ccu3: 192.168.0.?? # TBD
+      slzb-06: 192.168.0.?? # TBD
       intserver: 192.168.0.100
       master: 192.168.0.101
 
