@@ -92,13 +92,17 @@
         servicename: vpnserver, 
         basedir: /srv/vpnserver, 
         domain: "streiner.elberfeld.info",
-        vpn_port: 51820
+        vpn_port: 51821
       }
     - { 
         role: roles_services/docker_watchtower, tags: watchtower,
         servicename: watchtower,
         basedir: /srv/watchtower,
       }   
+    - { 
+        role: roles_services/wireguard, tags: wireguard,
+        wireguard_port: 51820
+      }
 
 
 

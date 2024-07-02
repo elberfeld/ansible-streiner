@@ -1,0 +1,29 @@
+---
+
+- include_tasks: ../functions/get_secret.yml
+  with_items:
+    - { path: "/etc/wireguard/wg0_key", type: wireguard }
+    - { path: "/etc/wireguard/wg0_peer_publickey", type: prompt }
+
+- name: install deb packages
+  apt:
+    update_cache: yes
+    state: present
+    install_recommends: no
+    name:
+      - wireguard
+      - wireguard-tools
+
+- name: wireguard config files
+  template:
+    src: "{{ item }}"
+    dest: "/etc/wireguard/{{ item }}"
+  with_items:
+    - wg0.conf
+
+- name: network config files
+  template:
+    src: "{{ item }}"
+    dest: "/etc/network/interfaces.d/{{ item }}"
+  with_items:
+    - 90-wireguard.cfg

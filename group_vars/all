@@ -28,7 +28,13 @@ networks:
     dns:
       domain: streiner.lan # cannot reference variable here
       server: 192.168.0.1 # cannot reference fixed_ip here
-    cdir_v4: 10.70.0.0/24      
+    cdir_v4: 10.77.0.0/24      
+
+  # VPN Router to Webserver
+  vpntransfer:
+    cdir_v4: 10.70.0.0/24
+    router_ipv4: 10.70.0.1
+    webserver_ipv4: 10.70.0.2
 
   # Webserver local Networks
   webserver:

@@ -30,7 +30,8 @@ admins:
 # Docker konfigurationen 
 docker:
   # Interne Docker-Netzwerke 
-  internal_networks: {}
+  internal_networks: 
+    - web
   # Prometheus Metriken aktivieren 
   prometheus_metrics: yes
   # Prometheus Stats aktivieren
