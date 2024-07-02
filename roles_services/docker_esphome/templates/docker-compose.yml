@@ -4,6 +4,7 @@ services:
   app:
 
     image: esphome/esphome:stable
+    restart: always
     ports:
       - {{ esphome_port }}:6052 
     volumes:
