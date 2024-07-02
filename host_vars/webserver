@@ -1,6 +1,6 @@
 
 motd_lines: 
-  - "VPN Server"
+  - "WebServer"
   - "Interne IP: {{ int_ip4 }}"
   - "Öffentliche IPs: {{ ext_ip4 }} / {{ ext_ip6 }}"
 
@@ -17,9 +17,9 @@ debian_keys_url:
 
 
 # Primäre IP Adressen des Hosts 
-ext_ip4: "{{ networks.vpnserver.ext_ip4 }}"
-ext_ip6: "{{ networks.vpnserver.ext_ip6 }}"
-int_ip4: "{{ networks.vpnserver.int_ip4 }}"
+ext_ip4: "{{ networks.webserver.ext_ip4 }}"
+ext_ip6: "{{ networks.webserver.ext_ip6 }}"
+int_ip4: "{{ networks.webserver.int_ip4 }}"
 
 
 # Root - SSH Keys 

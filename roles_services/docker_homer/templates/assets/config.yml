@@ -148,8 +148,8 @@ services:
         target: "_blank" 
 
       - name: "VPN Server"
-        logo: "https://{{ networks.vpnserver.ext_ip4 }}/favicon.ico"        
-        url: "https://{{ networks.vpnserver.ext_ip4 }}"
+        logo: "https://{{ networks.webserver.ext_ip4 }}/favicon.ico"        
+        url: "https://{{ networks.webserver.ext_ip4 }}"
         target: "_blank" 
 
   - name: "Other"
@@ -167,6 +167,6 @@ services:
         target: "_blank" 
 
       - name: "Traefik Dashboard (vpnserver)"
-        logo: "http://{{ networks.vpnserver.ext_ip4 }}:8080/favicon.ico"        
-        url: "http://{{ networks.vpnserver.ext_ip4 }}:8080"
+        logo: "http://{{ networks.webserver.ext_ip4 }}:8080/favicon.ico"        
+        url: "http://{{ networks.webserver.ext_ip4 }}:8080"
         target: "_blank" 

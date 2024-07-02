@@ -77,7 +77,7 @@
       }   
 
 
-- hosts: vpnserver
+- hosts: webserver
   remote_user: root
   roles:
     - { role: roles_services/docker, tags: docker }
@@ -85,15 +85,13 @@
         role: roles_services/docker_traefik, tags: traefik,
         servicename: traefik, 
         basedir: /srv/traefik,
-        domain_base: "TBD",
-        domain_default: "TBD",
         traefik_port: 8080
       }
     - {
         role: roles_services/docker_vpnserver, tags: vpnserver, 
         servicename: vpnserver, 
         basedir: /srv/vpnserver, 
-        domain: TBD,
+        domain: "streiner.elberfeld.info",
         vpn_port: 51820
       }
     - { 

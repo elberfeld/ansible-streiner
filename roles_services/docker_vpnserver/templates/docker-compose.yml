@@ -21,13 +21,13 @@ services:
       - "WG_ADMIN_PASSWORD={{ wg_admin_pass }}"
       - "WG_WIREGUARD_PRIVATE_KEY={{ wg_private_key }}"
       - "WG_WIREGUARD_PORT={{ vpn_port }}"
-      - "WG_VPN_CIDR={{ networks.vpnserverwg.cdir_v4 }}"
+      - "WG_VPN_CIDR={{ networks.webserver.cdir_v4 }}"
       - "WG_VPN_CIDRV6=0" # to disable IPv6
-      - "WG_VPN_ALLOWED_IPS={{ networks.defaultroute.cdir_v4 }}, {{ networks.vpnserverwg.cdir_v4 }}, {{ networks.vpnserverwg.dns.server | ansible.utils.ipaddr('host') }}, {{ networks.local.cdir_v4 }}" 
+      - "WG_VPN_ALLOWED_IPS={{ networks.defaultroute.cdir_v4 }}, {{ networks.webserver.cdir_v4 }}, {{ networks.webserver.dns.server | ansible.utils.ipaddr('host') }}, {{ networks.local.cdir_v4 }}" 
       - "WG_EXTERNAL_HOST={{ domain }}"
       - "WG_DNS_ENABLED=true"
-      - "WG_DNS_DOMAIN={{ networks.vpnserverwg.dns.domain }}"
-      - "WG_DNS_UPSTREAM={{ networks.vpnserverwg.dns.server }}"
+      - "WG_DNS_DOMAIN={{ networks.webserver.dns.domain }}"
+      - "WG_DNS_UPSTREAM={{ networks.webserver.dns.server }}"
       - "WG_LOG_LEVEL=info"
     labels:
       - traefik.enable=true
