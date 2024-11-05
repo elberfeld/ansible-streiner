@@ -103,6 +103,11 @@ services:
         url: "http://{{ networks.local.fixed_ip.intserver }}:8123"
         target: "_blank" 
 
+      - name: "Zigbee2MQTT"
+        logo: "http://{{ networks.local.fixed_ip.intserver }}:8081/assets/favicon-a8299d0b.ico"        
+        url: "http://{{ networks.local.fixed_ip.intserver }}:8081"
+        target: "_blank" 
+
       - name: "MQTT Explorer"
         logo: "https://mqtt.org/favicon-32x32.png"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:4000"
@@ -111,6 +116,11 @@ services:
       - name: "ESPHome"
         logo: "http://{{ networks.local.fixed_ip.intserver }}:6052/static/images/favicon.ico"        
         url: "http://{{ networks.local.fixed_ip.intserver }}:6052"
+        target: "_blank" 
+
+      - name: "SLZB-06"
+        logo: "http://{{ networks.local.fixed_ip.slzb06 }}/favicon.ico"        
+        url: "http://{{ networks.local.fixed_ip.slzb06 }}"
         target: "_blank" 
 
       - name: "CCU3"

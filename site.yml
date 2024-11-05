@@ -75,6 +75,12 @@
         servicename: watchtower,
         basedir: /srv/watchtower,
       }   
+    - { 
+        role: roles_services/docker_zigbee2mqtt, tags: zigbee2mqtt,
+        servicename: zigbee2mqtt,
+        basedir: /srv/zigbee2mqtt,
+        z2m_port: 8081
+      }   
 
 
 - hosts: webserver
