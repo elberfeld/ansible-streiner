@@ -2,9 +2,9 @@
 default_config:
 
 # includes
-# automation: !include automations.yaml
-# script: !include scripts.yaml
-# scene: !include scenes.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
 
 # Load frontend themes from the themes folder
 frontend:
