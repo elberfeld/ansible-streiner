@@ -33,3 +33,11 @@ advanced:
   log_level: info
   log_namespaced_levels:
     z2m:mqtt: warning
+
+# Device Configuration
+devices:
+
+  # see https://www.zigbee2mqtt.io/devices/E1766.html
+  '0x8cf681fffe338c40':
+    friendly_name: 'Büro UG Rollo Button'
+    legacy: false
