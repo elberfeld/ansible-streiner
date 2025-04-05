@@ -23,6 +23,7 @@ int_ip4: "{{ networks.local.fixed_ip.intserver }}"
 
 # Root - SSH Keys 
 admins:
+  - stefan
   - chris
 
 

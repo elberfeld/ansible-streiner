@@ -24,6 +24,7 @@ int_ip4: "{{ networks.webserver.int_ip4 }}"
 
 # Root - SSH Keys 
 admins:
+  - stefan
   - chris
 
 
